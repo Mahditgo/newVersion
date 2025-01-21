@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors')
 
 const salesRouter = require('./routes/salesRouter');
 const warehouseRouter = require('./routes/warehouseRouter');
@@ -11,6 +12,10 @@ dotenv.config();
 
 
 const app = express();
+app.use(cors({
+  origin :"http://localhost:5173" ,
+  credentials : true
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
