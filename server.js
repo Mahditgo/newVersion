@@ -1,0 +1,44 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+const salesRouter = require('./routes/salesRouter');
+const warehouseRouter = require('./routes/warehouseRouter');
+const materialdetailsRouts = require('./routes/materialdetailRoutes');
+const propertyDetailsRoutes = require('./routes/propertyDetailsRouter');
+const otherGoodsRoutes = require('./routes/otherGoodsRouter');
+dotenv.config();
+
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const MONGO_URI = process.env.MONGO_URI;
+
+
+const connectDB = async () => {
+  try {
+   
+    await mongoose.connect(MONGO_URI);
+    console.log('Database connected successfully');
+  } catch (err) {
+    console.error('Error connecting to database:', err.message);
+    process.exit(1); 
+  }
+};
+
+app.use('/api/sales',             salesRouter);
+app.use('/api/warehouse',         warehouseRouter);
+app.use('/api/materialdetails',   materialdetailsRouts);
+app.use('/api/propertyDetails',   propertyDetailsRoutes);
+app.use('/api/otherGoods',        otherGoodsRoutes);
+
+
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  connectDB(); 
+});
