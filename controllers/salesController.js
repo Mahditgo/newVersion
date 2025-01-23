@@ -147,3 +147,35 @@ exports.deleteSales = async (req, res) => {
         }
     }
 };
+
+
+exports.deleteSalesRow = async (req, res) => {
+    const { id, itemId } = req.params;
+try {
+    const sales = await SalesDetail.findById(id);
+
+        if (!sales) {
+            return res.status(404).json({
+                success: false,
+                message: 'No sales  found with the provided id',
+            });
+        }
+
+        const result = await SalesDetail.updateOne(
+            { _id: id },
+            { $pull: { items: { _id: itemId } } }
+          );
+
+          if (result.modifiedCount  > 0) {
+            res.status(200).send({ message: 'Item deleted successfully!' });
+          } else {
+            res.status(404).send({ message: 'Item not found!' });
+          }
+
+    }catch(e) {
+        console.log(e.message);
+        res.status(500).json({success : false, message : 'Internal serverError'});
+        
+    }
+
+}

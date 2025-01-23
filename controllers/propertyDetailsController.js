@@ -152,3 +152,35 @@ exports.deletePropertyDetails = async (req, res) => {
         }
     }
 };
+
+
+exports.deletePropertyRow = async (req, res) => {
+    const { id, itemId } = req.params;
+try {
+    const property = await propertyModel.findById(id);
+
+        if (!property) {
+            return res.status(404).json({
+                success: false,
+                message: 'No property  found with the provided id',
+            });
+        }
+
+        const result = await propertyModel.updateOne(
+            { _id: id },
+            { $pull: { items: { _id: itemId } } }
+          );
+
+          if (result.modifiedCount  > 0) {
+            res.status(200).send({ message: 'Item deleted successfully!' });
+          } else {
+            res.status(404).send({ message: 'Item not found!' });
+          }
+
+    }catch(e) {
+        console.log(e.message);
+        res.status(500).json({success : false, message : 'Internal serverError'});
+        
+    }
+
+}

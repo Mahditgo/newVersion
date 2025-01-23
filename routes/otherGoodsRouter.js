@@ -5,7 +5,8 @@ const router = Router();
 
 router.post('/', upload.single('file'), otherGoodsController.uplaodOtherGoods);
 router.get('/:reportId', otherGoodsController.getOtherGoods);
-router.delete('/:id' , otherGoodsController.deleteOtherGood)
+router.delete('/:id' , otherGoodsController.deleteOtherGood);
+router.delete('/:id/items/:itemId', otherGoodsController.deleteGoodsRow);
 
 
 
