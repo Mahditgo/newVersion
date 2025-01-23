@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/', upload.single('file'), propertyController.uplaodPropertyDetails);
 router.get('/:reportId', propertyController.getPropertyDetails);
-router.delete('/:id' , propertyController.deletePropertyDetails)
+router.delete('/:id/items/:itemId', propertyController.deletePropertyRow);
 
 
 

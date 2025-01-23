@@ -8,7 +8,8 @@ const warehouseRouter = require('./routes/warehouseRouter');
 const materialdetailsRouts = require('./routes/materialdetailRoutes');
 const propertyDetailsRoutes = require('./routes/propertyDetailsRouter');
 const otherGoodsRoutes = require('./routes/otherGoodsRouter');
-const productionDetailsRoutes = require('./routes/productionDetailsRouter')
+const productionDetailsRoutes = require('./routes/productionDetailsRouter');
+const productCountingDetailsRoutes = require('./routes/productCountingDetailRouter');
 dotenv.config();
 
 
@@ -39,7 +40,9 @@ app.use('/api/warehouse',         warehouseRouter);
 app.use('/api/materialdetails',   materialdetailsRouts);
 app.use('/api/propertyDetails',   propertyDetailsRoutes);
 app.use('/api/otherGoods',        otherGoodsRoutes);
-app.use('/api/productionsDetails', productionDetailsRoutes)
+app.use('/api/productionsDetails',     productionDetailsRoutes);
+app.use('/api/productCountingDetails', productCountingDetailsRoutes);
+
 
 
 
