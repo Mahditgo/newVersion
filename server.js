@@ -10,6 +10,7 @@ const propertyDetailsRoutes = require('./routes/propertyDetailsRouter');
 const otherGoodsRoutes = require('./routes/otherGoodsRouter');
 const productionDetailsRoutes = require('./routes/productionDetailsRouter');
 const productCountingDetailsRoutes = require('./routes/productCountingDetailRouter');
+const discrepancyRoutesRouter = require('./routes/discrepancyRoutesRouter')
 
 const insurancecoverageRoutes = require('./routes/insurancecoverageRouter')
 dotenv.config();
@@ -44,6 +45,7 @@ app.use('/api/propertyDetails',   propertyDetailsRoutes);
 app.use('/api/otherGoods',        otherGoodsRoutes);
 app.use('/api/productionsDetails',     productionDetailsRoutes);
 app.use('/api/productCountingDetails', productCountingDetailsRoutes);
+app.use('/api/productDiscrepancy', discrepancyRoutesRouter);
 
 
 //invaluation Imports
