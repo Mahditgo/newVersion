@@ -13,7 +13,7 @@ const productCountingDetailsSchema = new mongoose.Schema({
         {
             productCode : String,
             productName : String,
-            productionQuantity : Number
+            counting : Number
         }
     ]
 });

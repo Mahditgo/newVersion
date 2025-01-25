@@ -30,7 +30,7 @@ exports.uplaodProductCounting = async (req, res) => {
     const items = data.map((row) => ({
               productCode: row[0] || '0',  
               productName: row[1] || '0',
-              productionQuantity: row[2] || 0,
+              counting: row[2] || 0,
               
             }));
 
